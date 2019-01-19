@@ -11,38 +11,153 @@ ol,ul{
   display:block;
   clear:both;
 }
+
+.site-welcome{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:white;
+  z-index:3;
+}
+.site-welcome.active{
+  display:flex;
+}
+.loading{
+  width:100%;
+  height:100vh;
+  position:relative;
+}
+.loading:before, .loading::after{
+content:'';
+  width:0px;
+  height:0px;
+  background:#CA7471;
+  border-radius:50%;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:auto;
+  animation: s linear 1.3s infinite;
+}
+.loading::after{
+  animation-delay:0.8s;
+}
+
+@keyframes s{
+  0%{
+    height:0;
+    width:0;
+    opacity:1;
+  }
+  100%{
+    height:100px;
+    width:100px;
+    opacity:0;
+  }
+}
+
+
+/* -------- */
 .logo{
   float:left;
-  color:white;
+  color:inherit;
   font-size:15px;
   text-decoration:none;
   margin: 10px 17px;
   font-weight:bold;
   text-transform: uppercase;
 }
+.navnav{
+    float:right;
+}
 .topnavbar{
-  float:right;
   z-index:1;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  transition:all 0.3s;
+  color:white;
+}
+.topnavbar.sticky{
+  background:white;
+  color:#86837F;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 .navli{
   float:left;
   margin: 10px 17px;
   list-style:none;
+  position: relative;
 }
 .nava{
   font-size:15px;
-  color:white;
+  color:inherit;
   text-decoration:none;
   font-weight:bold;
   text-transform: uppercase;
-  border: 1px solid transparent;
-  padding-bottom:5px;
+  padding-bottom:10px;
+  display:block;
+  position: relative;
+}
+
+li.active > .nava::after{
+  /* border-bottom: 3px solid #e06567; */
+  content:'';
+  display:block;
+  position:absolute;
+  top:80%;
+  left:0;
+  width:100%;
+  background:#e06567;
+  height:3px;
+  animation: border 0.3s;
+}
+@keyframes border {
+  0%{
+    width:0;
+  }
+  100%{
+    width:100%
+  }
+}
+.submenu{
+  display:none;
+  position: absolute;
+  right:0;
+  top:100%;
+  background: white;
+  color:#CA7471;
+  animation: slide 0.3s;
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+
+}
+@keyframes slide {
+  0%{
+    margin-right:100%;
+
+  }
+  100%{
+    margin-right:0%;
+
+  }
+}
+.submenu > li{
+  white-space: nowrap;
+  padding:5px 10px;
+  cursor:pointer;
+}
+.topnavbar li.active > .submenu{
   display:block;
 }
 
-.nava:hover{
-  border-bottom: 3px solid #e06567;
-}
+
+/* ------------- */
 
 .banner{
   background-image:url('https://cdn.dribbble.com/users/1821976/screenshots/5749066/shot-cropped-1545818793041.png');
